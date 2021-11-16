@@ -25,7 +25,6 @@ Stretch Goal user stories
 See 'Database ERD.jpg'
 
 ## Backend Routes:
- * GET '/' - Home page.
  * POST '/users' - Create user.
  * POST '/users/login' - Login an existing user.
  * GET '/users/history' - Retrieve a logged in user's saved packlists.
@@ -38,6 +37,7 @@ See 'Database ERD.jpg'
         + Next 7 days' weather category
         + Packlist (list of items to pack)
  * POST '/search/save' - Save a searched packlist. NOTE: This only works immediately after a search has been performed.
+ * DELETE '/users/history' - Delete a saved packlist.
 
 ## MVP Checklist
 * Fronend - HTML & CSS (Art)
@@ -45,14 +45,34 @@ See 'Database ERD.jpg'
 * Frontend - JS (Cullen)
     - Enter stuff here 
 * Backend - JS (Jake)
-    - [] Analyze next 7 days' weather to return Frigid, Cold, Warm, or Hot.
+    - [ ] Initialize Node
+    - [ ] Install pg, sequelize, express, rowdy-logger, axios
+    - [ ] Initialize Sequelize
+    - [ ] Edit config
+    - [ ] Add .gitignore
+    - [ ] Sequelize create db
+    - [ ] Sequelize create migrations
+        + [ ] Remember to include unique to the username attribute/table column
+    - [ ] Sequelize execute migrations
+    - [ ] Confirm SQL database and tables
+    - [ ] Associate the models
+    - [ ] Add Routers and Controllers
+    - [ ] Create routes (See 'Backend Routes') 
+    - [ ] Create controller functions (See 'Backend Routes')
+        + [ ] Add weather API call functionality.
+        + [ ] Analyze the weather of a groups of days (5days prior, today, or next 7 days) and return Frigid, Cold, Warm, or Hot for that group.
+        + [ ] User weather analysis to determine which packItems to include in the search's packList.
 
 
 ## Stretch Goals
+* When I search for a city, the background of the page changes according to the country or region the city is in.
+* Add encryption to the userId.
+* Add hashing to the user password.
+* Ability to update a saved search with the current weather forecast.
 * Checkboxes for packing items.
     - Save status of checkboxes so user may log out and log back in and still have access to the same state of the checkboxes.
-* 
-## User Stories
+* Ability to add your personal clothes (a database table that is a closet) and say what weather they are meant for.
+    - Your packlist will show your personal items as option for your packlist (e.g shoes > 'Nike shoes', jackets > 'blue down jacket').
 
 ## Possible Names
 * TravelTime
