@@ -40,7 +40,12 @@ See 'Database ERD.jpg'
  * POST '/search/save' - Save a searched packlist. NOTE: This only works immediately after a search has been performed.
 
 ## MVP Checklist
-[] Analyze next 7 days' weather to return Frigid, Cold, Warm, or Hot.
+* Fronend - HTML & CSS (Art)
+    - Enter stuff here
+* Frontend - JS (Cullen)
+    - Enter stuff here 
+* Backend - JS (Jake)
+    - [] Analyze next 7 days' weather to return Frigid, Cold, Warm, or Hot.
 
 
 ## Stretch Goals
