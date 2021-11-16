@@ -1,12 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/style.css">
+  <title>Auth!</title>
 </head>
 <body>
-    
+  <nav>
+    <span id="home-link" class="nav-link">Home</span>
+    <span id="signup-link" class="nav-link">Sign Up</span>
+    <span id="login-link" class="nav-link">Login</span>
+    <span id="logout-link" class="nav-link">Logout</span>
+    <span id="history-link" class="nav-link">History</span>
+    <span id="search-link" class="nav-link">Search</span>
+  </nav>
+
+  <section id="home-content">
+    welcome
+  </section>
+
+  <section class="hidden" id="signup-content">
+    <form id="signup-form">
+      <label for="signup-email">Email</label>
+      <input type="text" id="signup-email">
+      
+      <label for="signup-password">Password</label>
+      <input type="password" id="signup-password">
+
+      <input type="submit" value="Sign Up!">
+    </form>
+  </section>
+
+  <section class="hidden" id="login-content">
+    <form id="login-form">
+      <label for="login-username">Username</label>
+      <input type="text" id="login-email">
+      
+      <label for="login-password">Password</label>
+      <input type="password" id="login-password">
+
+      <input type="submit" value="Log In!">
+    </form>
+  </section>
+
+  <section class="hidden" id="search-content">
+    <form id="login-form">
+      <label for="search-City">City</label>
+      <input type="text" id="search-City">
+      
+      <label for="search-country">Country</label>
+      <input type="password" id="search-country">
+
+      <input type="submit" value="Submit">
+    </form>
+  </section>
+
+  <section class="hidden" id="profile-content">
+    <div id="history-info">History of searches</div>
+  </section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" defer async></script>
+  <script src="/main.js" defer async></script>
+  <script src="/style.css" defer async></script>
 </body>
 </html>
