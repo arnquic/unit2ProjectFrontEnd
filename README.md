@@ -28,7 +28,7 @@ See 'Database ERD.jpg'
  * POST '/users' - Create user.
  * POST '/users/login' - Login an existing user.
  * GET '/users/history' - Retrieve a logged in user's saved packlists.
- * GET '/search' - Retrieve weather information and packlist items for the searched city.
+ * GET '/users/search' - Retrieve weather information and packlist items for the searched city. NOTE: This only works if a user is logged in.
     - Specifically, the following will be returned for use:
         + City
         + Country
@@ -56,11 +56,11 @@ See 'Database ERD.jpg'
     - [] add eventListeners for saving and clearing search results
     - [] implement axios routing for sign up, login, and profile
 * Backend - JS (Jake)
-    - [ ] Initialize Node
-    - [ ] Install pg, sequelize, express, rowdy-logger, axios
-    - [ ] Initialize Sequelize
-    - [ ] Edit config
-    - [ ] Add .gitignore
+    - [x] Initialize Node
+    - [x] Install pg, sequelize, express, rowdy-logger, axios
+    - [x] Initialize Sequelize
+    - [x] Edit config
+    - [x] Add .gitignore
     - [ ] Sequelize create db
     - [ ] Sequelize create migrations
         + [ ] Remember to include unique to the username attribute/table column
@@ -83,6 +83,7 @@ See 'Database ERD.jpg'
     - Save status of checkboxes so user may log out and log back in and still have access to the same state of the checkboxes.
 * Ability to add your personal clothes (a database table that is a closet) and say what weather they are meant for.
     - Your packlist will show your personal items as option for your packlist (e.g shoes > 'Nike shoes', jackets > 'blue down jacket').
+* Country drop-down in search dynamically populates based on the city entered.
 
 ## Possible Names
 * TravelTime
