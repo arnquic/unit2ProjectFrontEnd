@@ -3,7 +3,7 @@
 An app to tell the user what to pack when they're about to go to a different city, based on the upcoming weather. The database will store the user's saved pack lists.
 
 ## Wireframes
-* See 'website.drawio' and it's tabs (at the bottom of the file) for the different webpages.
+See 'website.drawio' and it's tabs (at the bottom of the file when opened) for the different webpages. NOTE: You must install a viewer, such as "Draw.io Integration" (as VS Code extension), to view this file.
 
 ## User Stories
 MVP user stories
@@ -21,9 +21,32 @@ Stretch Goal user stories
 * When I look at my suggested packlist, I can add personal items to specific packItem categories (e.g shoes > 'Nike shoes', jackets > 'blue down jacket').
 * When I search for a city, the background of the page changes according to the country or region the city is in.
 
+## Database ERD
+See 'Database ERD.jpg'
+
 ## Backend Routes:
- * '/' - Home page.
- * '/
+ * GET '/' - Home page.
+ * POST '/users' - Create user.
+ * POST '/users/login' - Login an existing user.
+ * GET '/users/history' - Retrieve a logged in user's saved packlists.
+ * GET '/search' - Retrieve weather information and packlist items for the searched city.
+    - Specifically, the following will be returned for use:
+        + City
+        + Country
+        + Past 5 days' weather category
+        + Today's (date search occured) weather category
+        + Next 7 days' weather category
+        + Packlist (list of items to pack)
+ * POST '/search/save' - Save a searched packlist. NOTE: This only works immediately after a search has been performed.
+
+## MVP Checklist
+* Fronend - HTML & CSS (Art)
+    - Enter stuff here
+* Frontend - JS (Cullen)
+    - Enter stuff here 
+* Backend - JS (Jake)
+    - [] Analyze next 7 days' weather to return Frigid, Cold, Warm, or Hot.
+
 
 ## Stretch Goals
 * Checkboxes for packing items.
