@@ -40,7 +40,7 @@ See 'Database ERD.jpg'
  * DELETE '/users/history' - Delete a saved packlist.
 
 ## MVP Checklist
-* Fronend - HTML & CSS (Art)
+* Frontend - HTML & CSS (Art)
     - []The main part I will need will be the navigation bar. I'm going to create the buttons that will show and hide whenever pressed I will use onclick functions in order for this to work and create seperate functions to hide and show certain buttons.
     - []Style the page so the website matches to any size screen. using margin or flex grid.
     - []Install font to make the page more appealing with script src
@@ -50,7 +50,11 @@ See 'Database ERD.jpg'
     - [] The search results would need to match data in the data base to be used. This will mostly be involved with the backend
     - [] this might be a stretch goal but it is doable. The background of the homepage will be transitioning in different countries. I believe set timers will be used for this and an array of images to cycle through
 * Frontend - JS (Cullen)
-    - Enter stuff here 
+    - [] add eventListeners on navigation bar for signing up, logging in, logging out, and showing profile/user histoy, and home button. 
+    - [] add eventListeners on sign up and login pages
+    - [] add eventListeners on the search form
+    - [] add eventListeners for saving and clearing search results
+    - [] implement axios routing for sign up, login, and profile
 * Backend - JS (Jake)
     - [ ] Initialize Node
     - [ ] Install pg, sequelize, express, rowdy-logger, axios
