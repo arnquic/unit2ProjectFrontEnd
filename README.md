@@ -41,12 +41,18 @@ See 'Database ERD.jpg'
 
 ## MVP Checklist
 * Fronend - HTML & CSS (Art)
-    - Enter stuff here
+    - []The main part I will need will be the navigation bar. I'm going to create the buttons that will show and hide whenever pressed I will use onclick functions in order for this to work and create seperate functions to hide and show certain buttons.
+    - []Style the page so the website matches to any size screen. using margin or flex grid.
+    - []Install font to make the page more appealing with script src
+    - []I will use some javascript inorder to create a history of things saved in the search so the user can add and see in the history page what they searched for. This can be done with add innerHTML to behind a specific tag
+    - []The homepage will welcome the user showing their name. This will be done with innerHTML in javascript to check if the username and display it on the homepage
+    - [] Create a label showing the results of the search. I will do as much css as I can within the label to make the history look neat. possibly will need flex commands in order for this to work if not. I'll just create the list too look as neat as possible with in the label.
+    - [] The search results would need to match data in the data base to be used. This will mostly be involved with the backend
+    - [] this might be a stretch goal but it is doable. The background of the homepage will be transitioning in different countries. I believe set timers will be used for this and an array of images to cycle through
 * Frontend - JS (Cullen)
     - Enter stuff here 
 * Backend - JS (Jake)
     - [] Analyze next 7 days' weather to return Frigid, Cold, Warm, or Hot.
-
 
 ## Stretch Goals
 * Checkboxes for packing items.
