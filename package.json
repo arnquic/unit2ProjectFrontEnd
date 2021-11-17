@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "rowdy-logger": "^1.0.2"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "unit2project",
+  "description": "An app to tell the user what to pack when they're about to go to a different city, based on the upcoming weather. The database will store the user's saved pack lists.",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git@git.generalassemb.ly:arnquist010/unit2Project.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
