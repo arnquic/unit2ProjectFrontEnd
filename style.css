@@ -1,6 +1,5 @@
 .nav-link {
-    color: blue;
-    text-decoration: underline;
+    color:white;
     margin: 0.5em;
   }
   
@@ -10,20 +9,40 @@
   
     nav{
         background-color:cornflowerblue;
+        text-align: center;
+        width:750px;
     }
 
-  .hidden {
+/*.hidden {
     display: none;
-  }
+  }*/
+
   small{
     max-width: 50%;
   }
 
-  p{
+
+
+section{
+  margin: auto;
+  max-width: max-content;
+  max-height: max-content;
+  margin-top: 20px;
+}
+
+#search-form{
+  justify-content: space-between;
+}
+
+  #result{
           border: 1px solid black;
-          max-width: 100%;
+          max-width: 75%;
+          width:500px;
           height:300px;
           overflow: auto;
+          text-align:center;
+          margin-left: auto;
+          margin-right: auto;
   }
 
   body{
