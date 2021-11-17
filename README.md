@@ -50,7 +50,7 @@ See 'Database ERD.jpg'
     - [] The search results would need to match data in the data base to be used. This will mostly be involved with the backend
     - [] this might be a stretch goal but it is doable. The background of the homepage will be transitioning in different countries. I believe set timers will be used for this and an array of images to cycle through
 * Frontend - JS (Cullen)
-    - [] add eventListeners on navigation bar for signing up, logging in, logging out, and showing profile/user histoy, and home button. 
+    - [x] add eventListeners on navigation bar for signing up, logging in, logging out, and showing profile/user histoy, and home button. 
     - [] add eventListeners on sign up and login pages
     - [] add eventListeners on the search form
     - [] add eventListeners for saving and clearing search results
