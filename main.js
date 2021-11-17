@@ -72,7 +72,7 @@ document.querySelector('#signup-form').addEventListener('submit', async (event) 
             username: username,
             password: password
         });
-        const userId = response.data.user.userId
+        const userId = response.user.userId
         localStorage.setItem('userId', userId)
     } catch (error) {
         console.log({error: error.message}, 'username is already taken');
@@ -85,11 +85,11 @@ document.querySelector('#login-form').addEventListener('submit', async (event) =
     const username = document.querySelector('#login-username').value
     const password = document.querySelector('#login-password').value
     try {
-        const response = await axios.post('http://localhost:3001/', {
+        const response = await axios.post('http://localhost:3001/users/login', {
             username: username,
             password: password
         });
-        const userId = response.data.user.userId
+        const userId = response.user.userId
         localStorage.setItem('userId', userId)
     } catch (error) {
         console.log({error: error.message}, 'login failed');
