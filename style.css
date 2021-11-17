@@ -10,18 +10,22 @@
     nav{
         background-color:cornflowerblue;
         text-align: center;
-        width:750px;
+        width: 100vw;
+        padding:5px;
+        background: rgba(0,0,0,0.5);
     }
 
-/*.hidden {
+.hidden {
     display: none;
-  }*/
+  }
 
   small{
     max-width: 50%;
   }
 
-
+#home-content{
+  margin-top: 10%;
+}
 
 section{
   margin: auto;
@@ -29,11 +33,22 @@ section{
   max-height: max-content;
   margin-top: 20px;
 }
+header{
+  margin: auto;
+  height: 20vmax;
+  text-align: center;
+  background: url('test.jpg');
+  background-size: 100vmax 20vmax;
+  color:white;
+  background-repeat:no-repeat;
 
+}
 #search-form{
   justify-content: space-between;
 }
-
+#header-text{
+  padding-top: 10vmax
+}
   #result{
           border: 1px solid black;
           max-width: 75%;
@@ -49,4 +64,9 @@ section{
     margin: auto;
     max-width: max-content;
     max-height: max-content;
+  }
+
+  input[type="submit"] {
+    background:green;
+    color: white;
   }
