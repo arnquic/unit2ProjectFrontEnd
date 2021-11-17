@@ -36,7 +36,7 @@ See 'Database ERD.jpg'
         + Today's (date search occured) weather category
         + Next 7 days' weather category
         + Packlist (list of items to pack)
- * POST '/search/save' - Save a searched packlist. NOTE: This only works immediately after a search has been performed.
+ * POST '/users/search/save' - Save a searched packlist. NOTE: This only works immediately after a search has been performed.
  * DELETE '/users/history' - Delete a saved packlist.
 
 ## MVP Checklist
@@ -61,18 +61,19 @@ See 'Database ERD.jpg'
     - [x] Initialize Sequelize
     - [x] Edit config
     - [x] Add .gitignore
-    - [ ] Sequelize create db
-    - [ ] Sequelize create migrations
-        + [ ] Remember to include unique to the username attribute/table column
-    - [ ] Sequelize execute migrations
-    - [ ] Confirm SQL database and tables
-    - [ ] Associate the models
-    - [ ] Add Routers and Controllers
-    - [ ] Create routes (See 'Backend Routes') 
+    - [x] Sequelize create db
+    - [x] Sequelize create migrations
+        + [x] Remember to include unique to the username attribute/table column
+        + [x] The username and password table columns in the users table do not allow nulls.
+    - [x] Sequelize execute migrations
+    - [x] Confirm SQL database and tables
+    - [x] Associate the models
+    - [x] Add Routers and Controllers
+    - [x] Create routes (See 'Backend Routes') 
     - [ ] Create controller functions (See 'Backend Routes')
-        + [ ] Add weather API call functionality.
-        + [ ] Analyze the weather of a groups of days (5days prior, today, or next 7 days) and return Frigid, Cold, Warm, or Hot for that group.
-        + [ ] User weather analysis to determine which packItems to include in the search's packList.
+        + [x] Add weather API call functionality.
+        + [x] Analyze the weather of a groups of days (5days prior, today, or next 7 days) and return Frigid, Cold, Warm, or Hot for that group.
+        + [x] User weather analysis to determine which packItems to include in the search's packList.
 
 ## Stretch Goals
 * When I search for a city, the background of the page changes according to the country or region the city is in.
