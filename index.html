@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="/style.css">
-  <title>Auth!</title>
+  <title>Travel Time</title>
 </head>
 <body>
   <nav>
@@ -45,18 +45,20 @@
 
   <section class="hidden" id="search-content">
     <form id="login-form">
-      <label for="search-City">City</label>
-      <input type="text" id="search-City">
+      <label for="search-city"></label>
+      <input type="text" id="search-City" placeholder="City">
       
-      <label for="search-country">Country</label>
-      <input type="password" id="search-country">
+      <label for="search-country"></label>
+      <input type="password" id="search-country" placeholder="Country">
 
-      <input type="submit" value="Submit">
+      <input type="submit" value="Search">
     </form>
+    <p id="result"></p>
   </section>
 
-  <section class="hidden" id="profile-content">
-    <div id="history-info">History of searches</div>
+  <section class="hidden" id="history-content">
+    <div id="history-info"></div>
+    <small></small>
   </section>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" defer async></script>
   <script src="/main.js" defer async></script>
