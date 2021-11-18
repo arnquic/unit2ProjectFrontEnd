@@ -3,6 +3,8 @@ document.querySelector('#home-link').addEventListener('click', () => {
     checkLoginState();
     document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
     document.querySelector('#home-content').classList.remove('hidden');
+    document.querySelector('#result').classList.add('hidden');
+
 });
 
 document.querySelector('#signup-link').addEventListener('click', (event) => {
@@ -15,7 +17,6 @@ document.querySelector('#login-link').addEventListener('click', () => {
     checkLoginState();
     document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
     document.querySelector('#login-content').classList.remove('hidden');
-    document.querySelector('#search-link').classList.add('hidden');
 });
 
 document.querySelector('#logout-link').addEventListener('click', () => {
@@ -47,9 +48,14 @@ document.querySelector('#history-link').addEventListener('click', () => {
     })
 });
 
+// ---------------------------------------------------------------------------------------
+// *** User Search page.
+// ---------------------------------------------------------------------------------------
+
 document.querySelector('#search-link').addEventListener('click', () => {
     checkLoginState();
     document.querySelectorAll('#search-content').forEach(s => s.classList.remove('hidden'));
+    document.querySelector('#search-form').classList.remove('hidden');
 });
 
 // --------------------------------------------------------------------------------------
@@ -74,6 +80,11 @@ document.querySelector('#signup-form').addEventListener('submit', async (event) 
     checkLoginState();
 });
 
+
+// --------------------------------------------------------------------------------------
+// *** Login form submission.
+// --------------------------------------------------------------------------------------
+
 document.querySelector('#login-form').addEventListener('submit', async (event) => {
     event.preventDefault()
     const username = document.querySelector('#login-username').value
@@ -92,6 +103,9 @@ document.querySelector('#login-form').addEventListener('submit', async (event) =
     checkLoginState();
 });
 
+// --------------------------------------------------------------------------------------
+// *** Search form submission.
+// --------------------------------------------------------------------------------------
 
 document.querySelector('#search-form').addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -99,10 +113,14 @@ document.querySelector('#search-form').addEventListener('submit', async (event) 
     const city = document.querySelector('#search-city').value
     const country = document.querySelector('#search-country').value
     try {
-        const response = await axios.get('http://localhost:3001/users/search', {
+        console.log(city, country);
+        const response = await axios.post('http://localhost:3001/users/search', {
             city: city,
             country: country
-        });
+        }).then((response) => {
+            console.log(response);
+            document.querySelector('#result').innerText = `Destination: ${city}, ${country}, Past Five Days: ${response.data.weatherReturn.past5days}, Today: ${response.data.weatherReturn.today}, Next Seven Days: ${response.data.weatherReturn.next7days}`
+        })
     } catch (error) {
         console.log({ error: error.message }, 'invalid city/country combination');
     }
@@ -115,6 +133,8 @@ document.querySelector('#search-form').addEventListener('submit', async (event) 
 const checkLoginState = () => {
     if (localStorage.getItem('userId')) {
         document.querySelector('#signup-link').classList.add('hidden');
+        document.querySelector('#signup-form').classList.add('hidden');
+        document.querySelector('#login-form').classList.add('hidden');
         document.querySelector('#login-link').classList.add('hidden');
         document.querySelector('#search-link').classList.remove('hidden');
         document.querySelector('#logout-link').classList.remove('hidden');
@@ -123,8 +143,12 @@ const checkLoginState = () => {
         document.querySelector('#logout-link').classList.add('hidden');
         document.querySelector('#history-link').classList.add('hidden');
         document.querySelector('#search-link').classList.add('hidden');
-        document.querySelector('#signup-link').classList.remove('hidden');
-        document.querySelector('#login-link').classList.remove('hidden');
+        document.querySelector('#search-form').classList.add('hidden');
         document.querySelector('#result').classList.add('hidden');
+        document.querySelector('#signup-link').classList.remove('hidden');
+        document.querySelector('#signup-form').classList.remove('hidden');
+        document.querySelector('#login-link').classList.remove('hidden');
     }
 }
+
+window.addEventListener('load', checkLoginState);

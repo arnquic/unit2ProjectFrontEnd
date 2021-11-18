@@ -18,9 +18,7 @@
 .hidden {
     display: none;
   }
-  #search-link{
-  display:none;
-}
+
   small{
     max-width: 50%;
   }
@@ -45,9 +43,15 @@ header{
   background-repeat:no-repeat;
   font-size: 40px;
 }
-#search-form{
-  justify-content: space-between;
+.saveclear {
+  display: inline-block;
+  margin: 4%;
+  
 }
+#search-form{
+  justify-content: space-between;  
+}
+
 #header-text{
   padding-top: 10vmax
 }
