@@ -105,3 +105,14 @@ header{
     background:red;
     color: white;
   }
+
+  .history-card {
+    border: 3px solid black;
+    padding: 5px;
+    margin: 5px;
+  }
+
+  .history-card div {
+    display: inline;
+    background-color: aqua;
+  }
