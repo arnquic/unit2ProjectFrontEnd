@@ -18,7 +18,9 @@
 .hidden {
     display: none;
   }
-
+  #search-link{
+  display:none;
+}
   small{
     max-width: 50%;
   }
@@ -37,7 +39,7 @@ header{
   margin: auto;
   height: 20vmax;
   text-align: center;
-  background: url('test.jpg');
+  background: url('https://i.imgur.com/PBIJhyf.jpg');
   background-size: 100vmax 20vmax;
   color:white;
   background-repeat:no-repeat;
@@ -68,7 +70,7 @@ header{
   #signup-username{
     margin-bottom: 20px;
   }
-  #-password{
+  #signup-password{
     margin-bottom: 20px;
   }
 
@@ -92,5 +94,10 @@ header{
 
   input[type="submit"] {
     background:green;
+    color: white;
+  }
+
+  input[value="Clear"] {
+    background:red;
     color: white;
   }
