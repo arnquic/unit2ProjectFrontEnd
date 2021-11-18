@@ -41,7 +41,7 @@ header{
   background-size: 100vmax 20vmax;
   color:white;
   background-repeat:no-repeat;
-
+  font-size: 40px;
 }
 #search-form{
   justify-content: space-between;
@@ -60,6 +60,30 @@ header{
           margin-right: auto;
   }
 
+  #signup-form{
+    padding: 10px;
+    max-width: min-content;
+    margin-top: 10px;
+  }
+  #signup-username{
+    margin-bottom: 20px;
+  }
+  #-password{
+    margin-bottom: 20px;
+  }
+
+  #login-form{
+    padding: 10px;
+    max-width: min-content;
+    margin-top: 10px;
+  }
+  #login-username{
+    margin-bottom: 20px;
+  }
+
+  #login-password{
+    margin-bottom: 20px;
+  }
   body{
     margin: auto;
     max-width: max-content;
