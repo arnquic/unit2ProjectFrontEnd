@@ -5,7 +5,8 @@
     "rowdy-logger": "^1.0.2"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "name": "unit2project",
   "description": "An app to tell the user what to pack when they're about to go to a different city, based on the upcoming weather. The database will store the user's saved pack lists.",

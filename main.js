@@ -1,21 +1,4 @@
 //nav links
-const checkLoginState = () => {
-    if (localStorage.getItem('userId')) {
-        document.querySelector('#signup-link').classList.add('hidden');
-        document.querySelector('#login-link').classList.add('hidden');
-        document.querySelector('#search-link').classList.remove('hidden');
-        document.querySelector('#logout-link').classList.remove('hidden');
-        document.querySelector('#history-link').classList.remove('hidden');
-    } else {
-        document.querySelector('#logout-link').classList.add('hidden');
-        document.querySelector('#history-link').classList.add('hidden');
-        document.querySelector('#search-link').classList.add('hidden');
-        document.querySelector('#signup-link').classList.remove('hidden');
-        document.querySelector('#login-link').classList.remove('hidden');
-        document.querySelector('#result').classList.add('hidden');
-    }
-}
-
 document.querySelector('#home-link').addEventListener('click', () => {
     checkLoginState();
     document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
@@ -25,7 +8,7 @@ document.querySelector('#home-link').addEventListener('click', () => {
 document.querySelector('#signup-link').addEventListener('click', (event) => {
     checkLoginState();
     document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
-    document.querySelector('#signup-content').classList.remove('hidden'); 
+    document.querySelector('#signup-content').classList.remove('hidden');
 });
 
 document.querySelector('#login-link').addEventListener('click', () => {
@@ -46,18 +29,22 @@ document.querySelector('#logout-link').addEventListener('click', () => {
     document.querySelector('#history-link').classList.add('hidden');
 });
 
+// ---------------------------------------------------------------------------------------
+// *** User History page.
+// ---------------------------------------------------------------------------------------
 
 document.querySelector('#history-link').addEventListener('click', () => {
     checkLoginState();
     document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
     document.querySelector('#profile-content').classList.remove('hidden');
-    
-    axios.get('http://localhost:3001/users/profile', {headers: { // confirm the URL route here
-    Authorization: localStorage.getItem('userId')
-}
-}).then((response) => {
-    document.querySelector('#history-info').innerText = `Welcome back, ${response.data.user}`
-})
+
+    axios.get('http://localhost:3001/users/profile', {
+        headers: { // confirm the URL route here
+            Authorization: localStorage.getItem('userId')
+        }
+    }).then((response) => {
+        document.querySelector('#history-info').innerText = `Welcome back, ${response.data.user}`
+    })
 });
 
 document.querySelector('#search-link').addEventListener('click', () => {
@@ -65,7 +52,9 @@ document.querySelector('#search-link').addEventListener('click', () => {
     document.querySelectorAll('#search-content').forEach(s => s.classList.remove('hidden'));
 });
 
-// body forms
+// --------------------------------------------------------------------------------------
+// *** Sign-up form submission.
+// --------------------------------------------------------------------------------------
 
 document.querySelector('#signup-form').addEventListener('submit', async (event) => {
     event.preventDefault()
@@ -80,7 +69,7 @@ document.querySelector('#signup-form').addEventListener('submit', async (event) 
         const userId = response.data.userId
         localStorage.setItem('userId', userId)
     } catch (error) {
-        console.log({error: error.message}, 'username is already taken');
+        console.log({ error: error.message }, 'username is already taken');
     }
     checkLoginState();
 });
@@ -98,7 +87,7 @@ document.querySelector('#login-form').addEventListener('submit', async (event) =
         const userId = response.data.userId
         localStorage.setItem('userId', userId)
     } catch (error) {
-        console.log({error: error.message}, 'login failed');
+        console.log({ error: error.message }, 'login failed');
     }
     checkLoginState();
 });
@@ -115,6 +104,27 @@ document.querySelector('#search-form').addEventListener('submit', async (event) 
             country: country
         });
     } catch (error) {
-        console.log ({error: error.message}, 'invalid city/country combination');
+        console.log({ error: error.message }, 'invalid city/country combination');
     }
 });
+
+// ---------------------
+// | Helper Functions. |
+// ---------------------
+
+const checkLoginState = () => {
+    if (localStorage.getItem('userId')) {
+        document.querySelector('#signup-link').classList.add('hidden');
+        document.querySelector('#login-link').classList.add('hidden');
+        document.querySelector('#search-link').classList.remove('hidden');
+        document.querySelector('#logout-link').classList.remove('hidden');
+        document.querySelector('#history-link').classList.remove('hidden');
+    } else {
+        document.querySelector('#logout-link').classList.add('hidden');
+        document.querySelector('#history-link').classList.add('hidden');
+        document.querySelector('#search-link').classList.add('hidden');
+        document.querySelector('#signup-link').classList.remove('hidden');
+        document.querySelector('#login-link').classList.remove('hidden');
+        document.querySelector('#result').classList.add('hidden');
+    }
+}
