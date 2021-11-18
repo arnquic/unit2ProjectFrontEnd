@@ -12,6 +12,7 @@ document.querySelector('#home-link').addEventListener('click', () => {
     document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
     document.querySelector('#home-content').classList.remove('hidden');
     document.querySelector('#result').classList.add('hidden');
+    destroyHistoryElements();
     showHideNavLinks();
 });
 
@@ -26,6 +27,7 @@ document.querySelector('#signup-link').addEventListener('click', (event) => {
 document.querySelector('#login-link').addEventListener('click', () => {
     document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
     document.querySelector('#login-content').classList.remove('hidden');
+    destroyHistoryElements();
     showHideNavLinks();
 });
 
@@ -33,12 +35,14 @@ document.querySelector('#login-link').addEventListener('click', () => {
 document.querySelector('#logout-link').addEventListener('click', () => {
     document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
     localStorage.removeItem('userId');
+    destroyHistoryElements();
     showHideNavLinks();
 });
 
 // Search
 document.querySelector('#search-link').addEventListener('click', () => {
     document.querySelectorAll('#search-content').forEach(s => s.classList.remove('hidden'));
+    destroyHistoryElements();
     showHideNavLinks();
 });
 
@@ -51,6 +55,7 @@ document.querySelector('#history-link').addEventListener('click', handleHistoryN
 
 
 async function handleHistoryNavClick(event) {
+    destroyHistoryElements();
     document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
     document.getElementById('history-content').classList.remove('hidden');
 
@@ -224,4 +229,10 @@ async function createHistoricPacklist(recordId, cityId, weatherInfoObj, packItem
     }
 }
 
-window.addEventListener('load', checkLoginState);
+function destroyHistoryElements() {
+    document.querySelectorAll('.history-card').forEach((el) => {
+        el.remove();
+    })
+}
+
+window.addEventListener('load', showHideNavLinks);
