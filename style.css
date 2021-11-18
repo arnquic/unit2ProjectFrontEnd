@@ -37,15 +37,21 @@ header{
   margin: auto;
   height: 20vmax;
   text-align: center;
-  background: url('test.jpg');
+  background: url('https://i.imgur.com/PBIJhyf.jpg');
   background-size: 100vmax 20vmax;
   color:white;
   background-repeat:no-repeat;
   font-size: 40px;
 }
-#search-form{
-  justify-content: space-between;
+.saveclear {
+  display: inline-block;
+  margin: 4%;
+  
 }
+#search-form{
+  justify-content: space-between;  
+}
+
 #header-text{
   padding-top: 10vmax
 }
@@ -68,7 +74,7 @@ header{
   #signup-username{
     margin-bottom: 20px;
   }
-  #-password{
+  #signup-password{
     margin-bottom: 20px;
   }
 
@@ -95,11 +101,17 @@ header{
     color: white;
   }
 
+  input[value="Clear"] {
+    background:red;
+    color: white;
+  }
+
   .history-card {
     border: 3px solid black;
     padding: 5px;
     margin: 5px;
   }
+
   .history-card div {
     display: inline;
     background-color: aqua;

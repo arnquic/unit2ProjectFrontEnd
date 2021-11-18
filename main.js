@@ -11,6 +11,7 @@ window.addEventListener('load', showHideNavLinks);
 document.querySelector('#home-link').addEventListener('click', () => {
     document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
     document.querySelector('#home-content').classList.remove('hidden');
+    document.querySelector('#result').classList.add('hidden');
     showHideNavLinks();
 });
 
@@ -72,6 +73,7 @@ async function handleHistoryNavClick(event) {
     showHideNavLinks();
 }
 
+
 // --------------------------------------------------------------------------------------
 // *** Sign-up form submission.
 // --------------------------------------------------------------------------------------
@@ -120,6 +122,7 @@ document.querySelector('#login-form').addEventListener('submit', async (event) =
 // --------------------------------------------------------------------------------------
 // *** Search form submission.
 // --------------------------------------------------------------------------------------
+
 document.querySelector('#search-form').addEventListener('submit', async (event) => {
     event.preventDefault();
     document.querySelector('#result-content').classList.remove('hidden');
@@ -132,7 +135,7 @@ document.querySelector('#search-form').addEventListener('submit', async (event) 
             country: country
         }).then((response) => {
             console.log(response);
-            document.querySelector('#result').innerText = `Destination: ${city}, ${country}, Past Five Day: ${response.data.weatherReturn.past5days}, Today: ${response.data.weatherReturn.today}, Next Seven Days: ${response.data.weatherReturn.next7days}`
+            document.querySelector('#result').innerText = `Destination: ${city}, ${country}, Past Five Days: ${response.data.weatherReturn.past5days}, Today: ${response.data.weatherReturn.today}, Next Seven Days: ${response.data.weatherReturn.next7days}`
         })
     } catch (error) {
         console.log({ error: error.message }, 'invalid city/country combination');
@@ -145,17 +148,22 @@ document.querySelector('#search-form').addEventListener('submit', async (event) 
 
 function showHideNavLinks() {
     if (localStorage.getItem('userId')) {
-        document.getElementById('history-link').classList.remove('hidden');
-        document.getElementById('signup-link').classList.add('hidden');
-        document.getElementById('login-link').classList.add('hidden');
-        document.getElementById('logout-link').classList.remove('hidden');
-        document.getElementById('search-link').classList.remove('hidden');
+        document.querySelector('#signup-link').classList.add('hidden');
+        document.querySelector('#signup-form').classList.add('hidden');
+        document.querySelector('#login-form').classList.add('hidden');
+        document.querySelector('#login-link').classList.add('hidden');
+        document.querySelector('#search-link').classList.remove('hidden');
+        document.querySelector('#logout-link').classList.remove('hidden');
+        document.querySelector('#history-link').classList.remove('hidden');
     } else {
-        document.getElementById('history-link').classList.add('hidden');
-        document.getElementById('signup-link').classList.remove('hidden');
-        document.getElementById('login-link').classList.remove('hidden');
-        document.getElementById('logout-link').classList.add('hidden');
-        document.getElementById('search-link').classList.add('hidden');
+        document.querySelector('#logout-link').classList.add('hidden');
+        document.querySelector('#history-link').classList.add('hidden');
+        document.querySelector('#search-link').classList.add('hidden');
+        document.querySelector('#search-form').classList.add('hidden');
+        document.querySelector('#result').classList.add('hidden');
+        document.querySelector('#signup-link').classList.remove('hidden');
+        document.querySelector('#signup-form').classList.remove('hidden');
+        document.querySelector('#login-link').classList.remove('hidden');
     }
 }
 
@@ -215,3 +223,5 @@ async function createHistoricPacklist(recordId, cityId, weatherInfoObj, packItem
         console.log(err);
     }
 }
+
+window.addEventListener('load', checkLoginState);
