@@ -12,6 +12,7 @@ const checkLoginState = () => {
         document.querySelector('#search-link').classList.add('hidden');
         document.querySelector('#signup-link').classList.remove('hidden');
         document.querySelector('#login-link').classList.remove('hidden');
+        document.querySelector('#result').classList.add('hidden');
     }
 }
 
@@ -45,23 +46,26 @@ document.querySelector('#logout-link').addEventListener('click', () => {
     document.querySelector('#history-link').classList.add('hidden');
 });
 
+
+document.querySelector('#history-link').addEventListener('click', () => {
+    checkLoginState();
+    document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
+    document.querySelector('#profile-content').classList.remove('hidden');
+    
+    axios.get('http://localhost:3001/users/profile', {headers: { // confirm the URL route here
+    Authorization: localStorage.getItem('userId')
+}
+}).then((response) => {
+    document.querySelector('#history-info').innerText = `Welcome back, ${response.data.user}`
+})
+});
+
 document.querySelector('#search-link').addEventListener('click', () => {
     checkLoginState();
     document.querySelectorAll('#search-content').forEach(s => s.classList.remove('hidden'));
 });
 
-document.querySelector('#history-link').addEventListener('click', () => {
-    checkLoginState();
-    document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
-    document.querySelector('profile-content').classList.remove('hidden');
-
-    axios.get('http://localhost:3001/users/profile', {headers: { // confirm the URL route here
-        Authorization: localStorage.getItem('userId')
-        }
-    }).then((response) => {
-        document.querySelector('#history-info').innerText = `Welcome back, ${response.data.user}`
-    })
-});
+// body forms
 
 document.querySelector('#signup-form').addEventListener('submit', async (event) => {
     event.preventDefault()
@@ -72,7 +76,8 @@ document.querySelector('#signup-form').addEventListener('submit', async (event) 
             username: username,
             password: password
         });
-        const userId = response.user.userId
+        console.log(response);
+        const userId = response.data.userId
         localStorage.setItem('userId', userId)
     } catch (error) {
         console.log({error: error.message}, 'username is already taken');
@@ -89,7 +94,8 @@ document.querySelector('#login-form').addEventListener('submit', async (event) =
             username: username,
             password: password
         });
-        const userId = response.user.userId
+        console.log(response);
+        const userId = response.data.userId
         localStorage.setItem('userId', userId)
     } catch (error) {
         console.log({error: error.message}, 'login failed');
@@ -97,10 +103,18 @@ document.querySelector('#login-form').addEventListener('submit', async (event) =
     checkLoginState();
 });
 
-if (localStorage.getItem('userId')) {
-    document.querySelector('#signup-link').classList.add('hidden');
-    document.querySelector('#login-link').classList.add('hidden');
-} else {
-    document.querySelector('#logout-link').classList.add('hidden');
-    document.querySelector('#history-link').classList.add('hidden');
-}
+
+document.querySelector('#search-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    document.querySelector('#result').classList.remove('hidden');
+    const city = document.querySelector('#search-city').value
+    const country = document.querySelector('#search-country').value
+    try {
+        const response = await axios.get('http://localhost:3001/users/search', {
+            city: city,
+            country: country
+        });
+    } catch (error) {
+        console.log ({error: error.message}, 'invalid city/country combination');
+    }
+});
