@@ -142,18 +142,18 @@ document.querySelector('#login-form').addEventListener('submit', async (event) =
 document.querySelector('#search-form').addEventListener('submit', async (event) => {
     event.preventDefault();
     document.querySelector('#search-result').classList.remove('hidden');
-    const city = document.querySelector('#search-city').value
-    const country = document.querySelector('#search-country').value
+    const cityEl = document.querySelector('#search-city');
+    const countryEl = document.querySelector('#search-country');
     try {
         destroySearchElements();
         const response = await axios.post('http://localhost:3001/users/search', {
-            city: city,
-            country: country
+            city: cityEl.value,
+            country: countryEl.value
         }).then((response) => {
             let resultsDivEl = document.createElement('div');
             resultsDivEl.setAttribute('class', 'search-results-card');
             let locationNameEl = document.createElement('h4')// destination
-            locationNameEl.innerText = `${city}, ${country}`;
+            locationNameEl.innerText = `${cityEl.value}, ${countryEl.value}`;
             locationNameEl.setAttribute('id', 'locationName')
             locationNameEl.setAttribute('data-cityId', response.data.cityId)
             let p5dEl = document.createElement('h4') // last five days
@@ -180,6 +180,8 @@ document.querySelector('#search-form').addEventListener('submit', async (event) 
             }
             resultsDivEl.append(locationNameEl, p5dEl, todayEl, n7dEl, packListHeaderEl, packListEl);
             document.querySelector('#search-result').append(resultsDivEl);
+            cityEl.value = '';
+            countryEl.value = '';
         })
     } catch (error) {
         console.log({ error: error.message }, 'invalid city/country combination');
