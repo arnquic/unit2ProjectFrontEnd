@@ -19,10 +19,9 @@ app.get('/main.js', async (req, res) => {
     await replaceInFile({
       files: filepath,
       from: regex,
-      to: 'http://travel-time-crbe.herokuapp.com'
+      to: 'https://travel-time-crbe.herokuapp.com'
     })
   }
-
   res.sendFile(filepath)
 })
 
