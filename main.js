@@ -115,7 +115,7 @@ document.querySelector('#login-form').addEventListener('submit', async (event) =
             password: password
         });
         console.log(response);
-        const userId = response.data.user.id;
+        const userId = response.data.id;
         localStorage.setItem('userId', userId)
         document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
     } catch (error) {
@@ -130,22 +130,67 @@ document.querySelector('#login-form').addEventListener('submit', async (event) =
 
 document.querySelector('#search-form').addEventListener('submit', async (event) => {
     event.preventDefault();
-    document.querySelector('#result-content').classList.remove('hidden');
+    document.querySelector('#result').classList.remove('hidden');
     const city = document.querySelector('#search-city').value
     const country = document.querySelector('#search-country').value
     try {
-        console.log(city, country);
+        // console.log(city, country);
         const response = await axios.post('http://localhost:3001/users/search', {
             city: city,
             country: country
         }).then((response) => {
-            console.log(response);
-            document.querySelector('#result').innerText = `Destination: ${city}, ${country}, Past Five Days: ${response.data.weatherReturn.past5days}, Today: ${response.data.weatherReturn.today}, Next Seven Days: ${response.data.weatherReturn.next7days}`
+            // console.log(response);
+            let cityNameEl = document.createElement('p')// destination
+            cityNameEl.innerText = city
+            cityNameEl.setAttribute('id', 'cityName')
+            cityNameEl.setAttribute('data-cityId', response.data.cityId)
+            let p5dEl = document.createElement('p') // last five days
+            p5dEl.innerText = response.data.weatherReturn.past5days
+            p5dEl.setAttribute('id', 'p5d')
+            let todayEl = document.createElement('p') // today
+            todayEl.innerText = response.data.weatherReturn.today
+            todayEl.setAttribute('id', 'today')
+            let n7dEl = document.createElement('p') // next seven days
+            n7dEl.innerText = response.data.weatherReturn.next7days
+            n7dEl.setAttribute('id', 'n7d')
+            let packListEl = document.createElement('ul') // packlist
+            for (let i = 0; i < response.data.packListReturn.length; i++) {
+                let packItem = document.createElement('li');
+                packItem.setAttribute('data-packItemId', response.data.packListReturn[i].id)
+                packItem.innerText = response.data.packListReturn[i].name
+                packListEl.appendChild(packItem);
+            }
+            document.querySelector('#result').append(cityNameEl, p5dEl, todayEl, n7dEl, packListEl)
+            // document.querySelector('#result').append = `Destination: ${city}, ${country}, Past Five Days: ${response.data.weatherReturn.past5days}, Today: ${response.data.weatherReturn.today}, Next Seven Days: ${response.data.weatherReturn.next7days}`
         })
     } catch (error) {
         console.log({ error: error.message }, 'invalid city/country combination');
     }
 });
+
+// --------------------------------------------------------------------------------------
+// *** Save form submission.
+// --------------------------------------------------------------------------------------
+
+// document.querySelector('#save-form').addEventListener('submit', async (event) => {
+//     event.preventDefault();
+//     // try {
+//     //     const response = await axios.post('http://localhost:3001/users/search/save'  , {
+//     //         cityId: someNumber,
+//     //         weatherReturn: {
+//     //             past5days: someWeatherType,
+//     //             today: someWeatherType,
+//     //             next7days: someWeatherType
+//     //         },
+//     //         packListReturn: [
+//     //             { id: somePackItemId},
+//     //             { id: somePackItemId}, ...
+//     //         ]
+//     //     }
+//     // } catch (error) {
+//     //     console.log({ error: error.message }, 'save failed');
+//     }
+
 
 // ---------------------
 // | Helper Functions. |
