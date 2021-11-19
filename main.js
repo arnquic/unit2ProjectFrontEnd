@@ -134,15 +134,17 @@ async function handleHistoryNavClick(event) {
         newEl.appendChild(deleteBtn);
         deleteBtn.addEventListener('click', async () => {
             newEl.remove();
-            await axios.delete('http://localhost:3001/users/history', 
-            { data: {
-                recordId: userHistory.data[i].recordId },
-            headers: {
-                    Authorization: localStorage.getItem('userId')
-                }
-            })
-            })
-        }
+            await axios.delete('http://localhost:3001/users/history',
+                {
+                    data: {
+                        recordId: userHistory.data[i].recordId
+                    },
+                    headers: {
+                        Authorization: localStorage.getItem('userId')
+                    }
+                })
+        })
+    }
     showHideNavLinks();
 }
 
@@ -282,7 +284,7 @@ async function createHistoricPacklist(recordId, cityId, weatherInfoObj, packItem
         let rightContainerDiv = document.createElement('div');
 
         // Set the container header to be the City, Country
-        const response = await axios.get(`http://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=89de7727b1752cbeafa3942937797633`);
+        const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=89de7727b1752cbeafa3942937797633`);
         console.log(response);
         let headerEl = document.createElement('h2');
         headerEl.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
