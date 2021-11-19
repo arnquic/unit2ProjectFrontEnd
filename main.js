@@ -11,15 +11,18 @@ window.addEventListener('load', showHideNavLinks);
 document.querySelector('#home-link').addEventListener('click', () => {
     document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
     document.querySelector('#home-content').classList.remove('hidden');
-    document.querySelector('#result').classList.add('hidden');
+    document.querySelector('#search-result').classList.add('hidden');
+    destroySearchElements();
     destroyHistoryElements();
     showHideNavLinks();
 });
 
 // Sign-up
-document.querySelector('#signup-link').addEventListener('click', (event) => {
+document.querySelector('#signup-link').addEventListener('click', () => {
     document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
     document.querySelector('#signup-content').classList.remove('hidden');
+    destroySearchElements();
+    destroyHistoryElements();
     showHideNavLinks();
 });
 
@@ -27,6 +30,7 @@ document.querySelector('#signup-link').addEventListener('click', (event) => {
 document.querySelector('#login-link').addEventListener('click', () => {
     document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
     document.querySelector('#login-content').classList.remove('hidden');
+    destroySearchElements();
     destroyHistoryElements();
     showHideNavLinks();
 });
@@ -35,13 +39,16 @@ document.querySelector('#login-link').addEventListener('click', () => {
 document.querySelector('#logout-link').addEventListener('click', () => {
     document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
     localStorage.removeItem('userId');
+    destroySearchElements();
     destroyHistoryElements();
     showHideNavLinks();
 });
 
 // Search
 document.querySelector('#search-link').addEventListener('click', () => {
-    document.querySelectorAll('#search-content').forEach(s => s.classList.remove('hidden'));
+    document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
+    document.querySelector('#search-content').classList.remove('hidden');
+    destroySearchElements();
     destroyHistoryElements();
     showHideNavLinks();
 });
@@ -94,7 +101,9 @@ document.querySelector('#signup-form').addEventListener('submit', async (event) 
         });
         console.log(response);
         const userId = response.data.user.id;
-        localStorage.setItem('userId', userId)
+        localStorage.setItem('userId', userId);
+        document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
+        document.querySelector('#home-content').classList.remove('hidden');
     } catch (error) {
         console.log({ error: error.message }, 'username is already taken');
     }
@@ -107,21 +116,23 @@ document.querySelector('#signup-form').addEventListener('submit', async (event) 
 
 document.querySelector('#login-form').addEventListener('submit', async (event) => {
     event.preventDefault()
-    const username = document.querySelector('#login-username').value
-    const password = document.querySelector('#login-password').value
+    const usernameEl = document.querySelector('#login-username')
+    const passwordEl = document.querySelector('#login-password')
     try {
         const response = await axios.post('http://localhost:3001/users/login', {
-            username: username,
-            password: password
+            username: usernameEl.value,
+            password: passwordEl.value
         });
         console.log(response);
-        const userId = response.data.id;
+        const userId = response.data.user.id;
         localStorage.setItem('userId', userId)
         document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
     } catch (error) {
         console.log({ error: error.message }, 'login failed');
     }
     showHideNavLinks();
+    usernameEl.value = '';
+    passwordEl.value = '';
 });
 
 // --------------------------------------------------------------------------------------
@@ -130,38 +141,45 @@ document.querySelector('#login-form').addEventListener('submit', async (event) =
 
 document.querySelector('#search-form').addEventListener('submit', async (event) => {
     event.preventDefault();
-    document.querySelector('#result').classList.remove('hidden');
+    document.querySelector('#search-result').classList.remove('hidden');
     const city = document.querySelector('#search-city').value
     const country = document.querySelector('#search-country').value
     try {
-        // console.log(city, country);
+        destroySearchElements();
         const response = await axios.post('http://localhost:3001/users/search', {
             city: city,
             country: country
         }).then((response) => {
-            // console.log(response);
-            let cityNameEl = document.createElement('p')// destination
-            cityNameEl.innerText = city
-            cityNameEl.setAttribute('id', 'cityName')
-            cityNameEl.setAttribute('data-cityId', response.data.cityId)
-            let p5dEl = document.createElement('p') // last five days
-            p5dEl.innerText = response.data.weatherReturn.past5days
+            let resultsDivEl = document.createElement('div');
+            resultsDivEl.setAttribute('class', 'search-results-card');
+            let locationNameEl = document.createElement('h4')// destination
+            locationNameEl.innerText = `${city}, ${country}`;
+            locationNameEl.setAttribute('id', 'locationName')
+            locationNameEl.setAttribute('data-cityId', response.data.cityId)
+            let p5dEl = document.createElement('h4') // last five days
+            p5dEl.innerText = `Past 5 days: ${response.data.weatherReturn.past5days}`;
             p5dEl.setAttribute('id', 'p5d')
-            let todayEl = document.createElement('p') // today
-            todayEl.innerText = response.data.weatherReturn.today
+            p5dEl.setAttribute('data-weatherInfo', response.data.weatherReturn.past5days)
+            let todayEl = document.createElement('h4') // today
+            todayEl.innerText = `Today: ${response.data.weatherReturn.today}`;
             todayEl.setAttribute('id', 'today')
-            let n7dEl = document.createElement('p') // next seven days
-            n7dEl.innerText = response.data.weatherReturn.next7days
+            todayEl.setAttribute('data-weatherInfo', response.data.weatherReturn.today)
+            let n7dEl = document.createElement('h4') // next seven days
+            n7dEl.innerText = `Next 7 days: ${response.data.weatherReturn.next7days}`;
             n7dEl.setAttribute('id', 'n7d')
+            n7dEl.setAttribute('data-weatherInfo', response.data.weatherReturn.next7days)
+            let packListHeaderEl = document.createElement('h4');
+            packListHeaderEl.innerHTML = 'Pack List:';
             let packListEl = document.createElement('ul') // packlist
+            packListEl.setAttribute('id', 'packList');
             for (let i = 0; i < response.data.packListReturn.length; i++) {
                 let packItem = document.createElement('li');
                 packItem.setAttribute('data-packItemId', response.data.packListReturn[i].id)
                 packItem.innerText = response.data.packListReturn[i].name
                 packListEl.appendChild(packItem);
             }
-            document.querySelector('#result').append(cityNameEl, p5dEl, todayEl, n7dEl, packListEl)
-            // document.querySelector('#result').append = `Destination: ${city}, ${country}, Past Five Days: ${response.data.weatherReturn.past5days}, Today: ${response.data.weatherReturn.today}, Next Seven Days: ${response.data.weatherReturn.next7days}`
+            resultsDivEl.append(locationNameEl, p5dEl, todayEl, n7dEl, packListHeaderEl, packListEl);
+            document.querySelector('#search-result').append(resultsDivEl);
         })
     } catch (error) {
         console.log({ error: error.message }, 'invalid city/country combination');
@@ -172,24 +190,48 @@ document.querySelector('#search-form').addEventListener('submit', async (event) 
 // *** Save form submission.
 // --------------------------------------------------------------------------------------
 
-// document.querySelector('#save-form').addEventListener('submit', async (event) => {
-//     event.preventDefault();
-//     // try {
-//     //     const response = await axios.post('http://localhost:3001/users/search/save'  , {
-//     //         cityId: someNumber,
-//     //         weatherReturn: {
-//     //             past5days: someWeatherType,
-//     //             today: someWeatherType,
-//     //             next7days: someWeatherType
-//     //         },
-//     //         packListReturn: [
-//     //             { id: somePackItemId},
-//     //             { id: somePackItemId}, ...
-//     //         ]
-//     //     }
-//     // } catch (error) {
-//     //     console.log({ error: error.message }, 'save failed');
-//     }
+document.querySelector('#save-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    try {
+        // Get cityId to submit to the backend.
+        const cityId = document.getElementById('locationName').getAttribute('data-cityId');
+
+        // Get the past 5 days' weather to submit to the backend.
+        const p5d = document.getElementById('p5d').getAttribute('data-weatherInfo');
+
+        // Get today's weather to submit to the backend.
+        const today = document.getElementById('today').getAttribute('data-weatherInfo');
+
+        // Get the next 7 days' to submit to the backend.
+        const n7d = document.getElementById('n7d').getAttribute('data-weatherInfo');
+
+        // Get the pack item ids to submit to the backend.
+        const packListEl = document.getElementById('packList');
+        let packListReturn = [];
+        for (let i = 0; i < packList.children.length; i++) {
+            packListReturn.push({ id: packListEl.children[i].getAttribute('data-packItemId') });
+        }
+
+        const response = await axios.post('http://localhost:3001/users/search/save', {
+            cityId: cityId,
+            weatherReturn: {
+                past5days: p5d,
+                today: today,
+                next7days: n7d
+            },
+            packListReturn
+        }, {
+            headers: {
+                Authorization: localStorage.getItem('userId')
+            }
+        });
+        console.log(response);
+        destroySearchElements();
+    }
+    catch (error) {
+        console.log({ error: error.message }, 'save failed');
+    }
+});
 
 
 // ---------------------
@@ -199,8 +241,6 @@ document.querySelector('#search-form').addEventListener('submit', async (event) 
 function showHideNavLinks() {
     if (localStorage.getItem('userId')) {
         document.querySelector('#signup-link').classList.add('hidden');
-        document.querySelector('#signup-form').classList.add('hidden');
-        document.querySelector('#login-form').classList.add('hidden');
         document.querySelector('#login-link').classList.add('hidden');
         document.querySelector('#search-link').classList.remove('hidden');
         document.querySelector('#logout-link').classList.remove('hidden');
@@ -209,10 +249,8 @@ function showHideNavLinks() {
         document.querySelector('#logout-link').classList.add('hidden');
         document.querySelector('#history-link').classList.add('hidden');
         document.querySelector('#search-link').classList.add('hidden');
-        document.querySelector('#search-form').classList.add('hidden');
-        document.querySelector('#result').classList.add('hidden');
+        document.querySelector('#search-result').classList.add('hidden');
         document.querySelector('#signup-link').classList.remove('hidden');
-        document.querySelector('#signup-form').classList.remove('hidden');
         document.querySelector('#login-link').classList.remove('hidden');
     }
 }
@@ -280,4 +318,8 @@ function destroyHistoryElements() {
     })
 }
 
-window.addEventListener('load', showHideNavLinks);
+function destroySearchElements() {
+    document.querySelectorAll('.search-results-card').forEach((el) => {
+        el.remove();
+    })
+}
