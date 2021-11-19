@@ -18,5 +18,9 @@
     "url": "git@git.generalassemb.ly:arnquist010/unit2Project.git"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "engines": {
+    "node": "17.0.1"
+  }
+
 }
