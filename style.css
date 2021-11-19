@@ -18,9 +18,7 @@
 .hidden {
     display: none;
   }
-  #search-link{
-  display:none;
-}
+
   small{
     max-width: 50%;
   }
@@ -45,9 +43,21 @@ header{
   background-repeat:no-repeat;
   font-size: 40px;
 }
-#search-form{
-  justify-content: space-between;
+.saveclear {
+  display: inline-block;
+  margin: 4%;
+  
 }
+#search-form{
+  justify-content: space-between;  
+}
+
+.saveoptions{
+  display:inline-block;
+  margin-top:10px;
+  margin-right:10px;
+}
+
 #header-text{
   padding-top: 10vmax
 }
@@ -100,4 +110,15 @@ header{
   input[value="Clear"] {
     background:red;
     color: white;
+  }
+
+  .history-card {
+    border: 3px solid black;
+    padding: 5px;
+    margin: 5px;
+  }
+
+  .history-card div {
+    display: inline;
+    background-color: aqua;
   }
