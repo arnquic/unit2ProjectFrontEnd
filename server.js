@@ -6,6 +6,7 @@ const routesReport = require('rowdy-logger').begin(app)
 const path = require('path')
 const backendUrl = 'http://localhost:3001';
 const replaceInFile = require('replace-in-file');
+const regex = new RegExp('http://localhost:3001', 'g');
 
 app.get('/', (req, res) => {
   const filepath = path.join(__dirname, 'index.html')
@@ -18,7 +19,7 @@ app.get('/main.js', async (req, res) => {
   if (process.env.NODE_ENV === 'production') {
     await replaceInFile({
       files: filepath,
-      from: 'http://localhost:3001',
+      from: regex,
       to: 'https://traveime-backend.herokuapp.com'
     });
   }
