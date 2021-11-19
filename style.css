@@ -12,7 +12,7 @@
         text-align: center;
         width: 100vw;
         padding:5px;
-        background: rgba(0,0,0,0.5);
+        background: rgb(112, 168, 190);
     }
 
 .hidden {
@@ -37,20 +37,30 @@ header{
   margin: auto;
   height: 20vmax;
   text-align: center;
-  background: url('https://i.imgur.com/PBIJhyf.jpg');
-  background-size: 100vmax 20vmax;
-  color:white;
+  background: url('https://images.unsplash.com/photo-1522199710521-72d69614c702?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1744&q=80');
+  background-position: center;
+  background-size: cover;
   background-repeat:no-repeat;
   font-size: 40px;
 }
+
+#header-text{
+  font-family: 'Megrim', cursive;
+  font-weight: 1000;
+  padding-top: 10vmax;
+  color:rgb(255, 255, 255);
+}
+
 .saveclear {
   display: inline-block;
   margin: 4%;
   
 }
+
 #search-form{
   justify-content: space-between;  
 }
+
 .saveoptions{
   display:inline-block;
   margin-top:10px;
@@ -58,9 +68,6 @@ header{
 
 }
 
-#header-text{
-  padding-top: 10vmax
-}
   #result{
           border: 1px solid black;
           max-width: 75%;
