@@ -53,39 +53,6 @@ document.querySelector('#search-link').addEventListener('click', () => {
     showHideNavLinks();
 });
 
-// History
-document.querySelector('#history-link').addEventListener('click', handleHistoryNavClick);
-
-// ---------------------------------------------------------------------------------------
-// *** User History page.
-// ---------------------------------------------------------------------------------------
-
-
-async function handleHistoryNavClick(event) {
-    destroyHistoryElements();
-    document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
-    document.getElementById('history-content').classList.remove('hidden');
-
-    const userInfo = await axios.get('http://localhost:3001/users/userinfo', {
-        headers: {
-            Authorization: localStorage.getItem('userId')
-        }
-    });
-    const userHistory = await axios.get('http://localhost:3001/users/history', {
-        headers: {
-            Authorization: localStorage.getItem('userId')
-        }
-    });
-    document.getElementById('history-welcome').innerHTML = `Welcome back, ${userInfo.data.user.username}`;
-    console.log(userHistory);
-    for (let i = 0; i < userHistory.data.length; i++) {
-        const newEl = await createHistoricPacklist(userHistory.data[i].recordId, userHistory.data[i].cityId, userHistory.data[i].weatherReturn, userHistory.data[i].packListReturn);
-        document.getElementById('history-info').append(newEl);
-    }
-    showHideNavLinks();
-}
-
-
 // --------------------------------------------------------------------------------------
 // *** Sign-up form submission.
 // --------------------------------------------------------------------------------------
@@ -134,6 +101,52 @@ document.querySelector('#login-form').addEventListener('submit', async (event) =
     usernameEl.value = '';
     passwordEl.value = '';
 });
+
+// History
+document.querySelector('#history-link').addEventListener('click', handleHistoryNavClick);
+
+// ---------------------------------------------------------------------------------------
+// *** User History page.
+// ---------------------------------------------------------------------------------------
+
+async function handleHistoryNavClick(event) {
+    destroyHistoryElements();
+    document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
+    document.getElementById('history-content').classList.remove('hidden');
+
+    const userInfo = await axios.get('http://localhost:3001/users/userinfo', {
+        headers: {
+            Authorization: localStorage.getItem('userId')
+        }
+    });
+    const userHistory = await axios.get('http://localhost:3001/users/history', {
+        headers: {
+            Authorization: localStorage.getItem('userId')
+        }
+    });
+    document.getElementById('history-welcome').innerHTML = `Welcome back, ${userInfo.data.user.username}`;
+    console.log(userHistory);
+    for (let i = 0; i < userHistory.data.length; i++) {
+        const newEl = await createHistoricPacklist(userHistory.data[i].recordId, userHistory.data[i].cityId, userHistory.data[i].weatherReturn, userHistory.data[i].packListReturn);
+        document.getElementById('history-info').append(newEl);
+        let deleteBtn = document.createElement('button');
+        deleteBtn.innerText = "delete"
+        newEl.appendChild(deleteBtn);
+        deleteBtn.addEventListener('click', async () => {
+            newEl.remove();
+            await axios.delete('http://localhost:3001/users/history', 
+            { data: {
+                recordId: userHistory.data[i].recordId },
+            headers: {
+                    Authorization: localStorage.getItem('userId')
+                }
+            })
+            })
+        }
+    showHideNavLinks();
+}
+
+
 
 // --------------------------------------------------------------------------------------
 // *** Search form submission.
