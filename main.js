@@ -1,3 +1,4 @@
+const backendURL = 'http://localhost:3001'
 // ----------------------------------------------------------------------------------------
 // *** Check login status on page load, so that the appropriate nav links are shown/hidden.
 // ----------------------------------------------------------------------------------------

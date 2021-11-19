@@ -51,10 +51,10 @@ See 'Database ERD.jpg'
     - [] this might be a stretch goal but it is doable. The background of the homepage will be transitioning in different countries. I believe set timers will be used for this and an array of images to cycle through
 * Frontend - JS (Cullen)
     - [x] add eventListeners on navigation bar for signing up, logging in, logging out, and showing profile/user histoy, and home button. 
-    - [] add eventListeners on sign up and login pages
-    - [] add eventListeners on the search form
-    - [] add eventListeners for saving and clearing search results
-    - [] implement axios routing for sign up, login, and profile
+    - [x] add eventListeners on sign up and login pages
+    - [x] add eventListeners on the search form
+    - [x] add eventListeners for saving and clearing search results
+    - [x] implement axios routing for sign up, login, and history 
 * Backend - JS (Jake)
     - [x] Initialize Node
     - [x] Install pg, sequelize, express, rowdy-logger, axios
