@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="/style.css">
   <title>Travel Time</title>
 </head>
+
 <body>
 
   <header>
@@ -15,27 +17,26 @@
 
   <nav>
     <span id="home-link" class="nav-link">Home</span>
-    <span id="signup-link" class="nav-link">Sign Up</span>
-    <span id="login-link" class="nav-link">Login</span>
-    <span id="logout-link" class="nav-link">Logout</span>
-    <span id="history-link" class="nav-link">History</span>
-    <span id="search-link" class="nav-link">Search</span>
+    <span id="signup-link" class="nav-link hidden">Sign Up</span>
+    <span id="login-link" class="nav-link hidden">Login</span>
+    <span id="logout-link" class="nav-link hidden">Logout</span>
+    <span id="history-link" class="nav-link hidden">History</span>
+    <span id="search-link" class="nav-link hidden">Search</span>
   </nav>
 
- <!-- Home form form -->
+  <!-- Home section -->
   <section id="home-content">
     Welcome to Travel Time
   </section>
 
- 
 
-<!-- Sign up form -->
 
+  <!-- Sign-up section -->
   <section class="hidden" id="signup-content">
     <form id="signup-form">
       <label for="signup-username">Username</label>
       <input type="text" id="signup-username">
-      
+
       <label for="signup-password">Password</label>
       <input type="password" id="signup-password">
 
@@ -43,11 +44,12 @@
     </form>
   </section>
 
+  <!-- Login section -->
   <section class="hidden" id="login-content">
     <form id="login-form">
       <label for="login-username">Username</label>
       <input type="text" id="login-username">
-      
+
       <label for="login-password">Password</label>
       <input type="password" id="login-password">
 
@@ -55,16 +57,24 @@
     </form>
   </section>
 
+  <!-- Search section -->
   <section class="hidden" id="search-content">
     <form id="search-form">
       <label for="search-city"></label>
-      <input type="text" id="search-City" placeholder="City">
-      
+      <input type="text" id="search-city" placeholder="City">
+
       <label for="search-country"></label>
       <input type="text" id="search-country" placeholder="Country">
 
       <input type="submit" value="Search">
+    </form>
+    <form id="save-form" class="saveoptions">
+
       <input type="submit" value="Save">
+      
+    </form>
+    <form id="clear-form" class="saveoptions">
+
       <input type="submit" value="Clear">
       
     </form>
@@ -73,12 +83,18 @@
 
 <p class="hidden" id="result"></p>
 
+
+  <!-- History section -->
   <section class="hidden" id="history-content">
-    <div id="history-info"></div>
-    <small></small>
+    <h1 id="history-welcome"></h1>
+    <div id="history-info">
+
+    </div>
   </section>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" defer async></script>
   <script src="/main.js" defer async></script>
 </body>
+
 </html>

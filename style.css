@@ -51,11 +51,11 @@ header{
 #search-form{
   justify-content: space-between;  
 }
-
 .saveoptions{
   display:inline-block;
   margin-top:10px;
   margin-right:10px;
+
 }
 
 #header-text{
