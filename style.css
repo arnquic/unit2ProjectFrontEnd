@@ -1,34 +1,37 @@
 body {
   font-size: 1vmax;
-  font-family: 'Overlock', cursive;
+  font-family: 'Arimo', sans-serif;
+  background-color: rgb(230, 225, 201);
+  margin: auto;
 }
 
 .nav-link {
-    color:white;
-    margin: 2.5vw;
-  }
+  color:white;
+  margin: 2.5vw;
+}
   
-  .nav-link:hover {
-    cursor: pointer;
-  }
+.nav-link:hover {
+  cursor: pointer;
+}
   
-    nav{
-        background-color:cornflowerblue;
-        text-align: center;
-        width: 100vw;
-        padding:5px;
-        background: rgb(112, 168, 190);
-    }
+nav{
+  background-color:cornflowerblue;
+  text-align: center;
+  width: 100vw;
+  padding:5px;
+  background: rgb(112, 168, 190);
+}
 
 .hidden {
-    display: none;
-  }
+  display: none;
+}
 
-  small{
-    max-width: 50%;
-  }
+small{
+  max-width: 50%;
+}
 
 #home-content{
+  font-family: 'Megrim', cursive;
   margin-top: 10%;
   font-size: 5vmax;
   text-align: center;
@@ -40,6 +43,7 @@ section{
   max-height: max-content;
   margin-top: 20px;
 }
+
 header{
   margin: auto;
   height: 20vmax;
@@ -75,64 +79,70 @@ header{
 
 }
 
-  #result{
-          border: 1px solid black;
-          max-width: 75%;
-          width:500px;
-          height:300px;
-          overflow: auto;
-          text-align:center;
-          margin-left: auto;
-          margin-right: auto;
-  }
+#search-result{
+  border: 1px solid black;
+  max-width: 75%;
+  width:500px;
+  height:300px;
+  overflow: auto;
+  text-align:center;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-  #signup-form{
-    padding: 10px;
-    max-width: min-content;
-    margin-top: 10px;
-  }
-  #signup-username{
-    margin-bottom: 20px;
-  }
-  #signup-password{
-    margin-bottom: 20px;
-  }
+#signup-form{
+  padding: 10px;
+  max-width: min-content;
+  margin-top: 10px;
+}
+#signup-username{
+  margin-bottom: 20px;
+}
+#signup-password{
+  margin-bottom: 20px;
+}
 
-  #login-form{
-    padding: 10px;
-    max-width: min-content;
-    margin-top: 10px;
-  }
-  #login-username{
-    margin-bottom: 20px;
-  }
+#login-form{
+  padding: 10px;
+  max-width: min-content;
+  margin-top: 10px;
+}
+#login-username{
+  margin-bottom: 20px;
+}
 
-  #login-password{
-    margin-bottom: 20px;
-  }
-  body{
-    margin: auto;
-    max-width: max-content;
-    max-height: max-content;
-  }
+#login-password{
+  margin-bottom: 20px;
+}
 
-  input[type="submit"] {
-    background:green;
-    color: white;
-  }
+input[type="submit"] {
+  background:green;
+  color: white;
+}
 
-  input[value="Clear"] {
-    background:red;
-    color: white;
-  }
+input[value="Clear"] {
+  background:red;
+  color: white;
+}
 
-  .history-card {
-    border: 3px solid black;
-    padding: 5px;
-    margin: 5px;
-  }
+#history-content {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .history-card div {
-    display: inline;
-    background-color: aqua;
-  }
+.history-card {
+  border: 3px solid black;
+  padding: 5px;
+  margin: 5px;
+}
+  
+.history-subdiv {
+  display: flex;
+  flex-direction: row;
+}
+
+.history-subdiv div {
+  margin: 10px;
+}

@@ -130,7 +130,7 @@ async function handleHistoryNavClick(event) {
         const newEl = await createHistoricPacklist(userHistory.data[i].recordId, userHistory.data[i].cityId, userHistory.data[i].weatherReturn, userHistory.data[i].packListReturn);
         document.getElementById('history-info').append(newEl);
         let deleteBtn = document.createElement('button');
-        deleteBtn.innerText = "delete"
+        deleteBtn.innerText = "Delete"
         newEl.appendChild(deleteBtn);
         deleteBtn.addEventListener('click', async () => {
             newEl.remove();
@@ -280,8 +280,12 @@ async function createHistoricPacklist(recordId, cityId, weatherInfoObj, packItem
         let containerDiv = document.createElement('div');
         containerDiv.setAttribute('data-recordId', recordId);
         containerDiv.setAttribute('class', 'history-card');
+        let subDiv = document.createElement('div');
+        subDiv.setAttribute('class', 'history-subdiv');
         let leftContainerDiv = document.createElement('div');
+        leftContainerDiv.setAttribute('class', 'weather-history');
         let rightContainerDiv = document.createElement('div');
+        rightContainerDiv.setAttribute('class', 'packlist-history');
 
         // Set the container header to be the City, Country
         const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=89de7727b1752cbeafa3942937797633`);
@@ -317,9 +321,12 @@ async function createHistoricPacklist(recordId, cityId, weatherInfoObj, packItem
         rightContainerDiv.appendChild(packListHeaderEl);
         rightContainerDiv.appendChild(packListEl);
 
-        // Append the left and right divs to the main div.
-        containerDiv.appendChild(leftContainerDiv);
-        containerDiv.appendChild(rightContainerDiv);
+        // Append the left and right divs to the sub div.
+        subDiv.appendChild(leftContainerDiv);
+        subDiv.appendChild(rightContainerDiv);
+
+        // Append the subDiv to the containerDiv.
+        containerDiv.appendChild(subDiv);
 
         return containerDiv;
 
