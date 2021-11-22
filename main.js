@@ -132,6 +132,7 @@ async function handleHistoryNavClick(event) {
         document.getElementById('history-info').append(newEl);
         let deleteBtn = document.createElement('button');
         deleteBtn.innerText = "delete"
+        deleteBtn.style.['border-radius'] = '10px';
         newEl.appendChild(deleteBtn);
         deleteBtn.addEventListener('click', async () => {
             newEl.remove();
