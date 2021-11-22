@@ -68,7 +68,7 @@ header{
 
 }
 
-  #result{
+  #search-result{
           border: 1px solid black;
           max-width: 75%;
           width:500px;
@@ -110,19 +110,22 @@ header{
   }
 
   input[type="submit"] {
-    background:green;
+    background:rgb(133, 176, 216);
     color: white;
+    border-radius: 10px;
   }
 
   input[value="Clear"] {
-    background:red;
+    background:rgb(153, 139, 194);
     color: white;
+    border-radius: 10px;
   }
 
   .history-card {
     border: 3px solid black;
     padding: 5px;
     margin: 5px;
+    border-radius: 10px;
   }
 
   .history-card div {
