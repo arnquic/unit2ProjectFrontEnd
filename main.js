@@ -166,8 +166,9 @@ document.querySelector('#search-form').addEventListener('submit', async (event) 
             country: countryEl.value
         }).then((response) => {
             let resultsDivEl = document.createElement('div');
+            resultsDivEl.style.borderRadius = '10px';
             resultsDivEl.setAttribute('class', 'search-results-card');
-            let locationNameEl = document.createElement('h4')// destination
+            let locationNameEl = document.createElement('h4') // destination
             locationNameEl.innerText = `${cityEl.value}, ${countryEl.value}`;
             locationNameEl.setAttribute('id', 'locationName')
             locationNameEl.setAttribute('data-cityId', response.data.cityId)
