@@ -23,7 +23,7 @@ app.get('/main.js', async (req, res) => {
     })
   }
   res.sendFile(filepath)
-})
+});
 
 app.get('/style.css', (req, res) => {
   const filepath = path.join(__dirname, 'style.css')
@@ -32,5 +32,6 @@ app.get('/style.css', (req, res) => {
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
+  console.log('Listening on port: ' + PORT);
   routesReport.print()
 })
